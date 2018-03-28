@@ -9,7 +9,7 @@ figure, imshow(image)
 U = double(reshape(image,w*h,d))/255;
 
 %% Write your method here
-c_s = 3.0;
+c_s = 60.0;
 c_U = 0.5;
 
 G = gradient(h, w);

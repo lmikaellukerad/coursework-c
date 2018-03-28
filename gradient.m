@@ -3,9 +3,9 @@ function [ G ] = gradient( h, w)
 
 % Sharpening function using gradients only between vertical neighbours.
 
-x = [1 -1]
-y = [1 2]
-z = [1 h + 1]
+x = [1 -1];
+y = [1 2];
+z = [1 h + 1];
 
 x_w = h*(w-1);
 x_h = w*(h-1);
