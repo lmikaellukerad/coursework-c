@@ -38,13 +38,12 @@ wv = repmat(x, [1 x_w]);
 %cj = [hj (wj + size(hj, 2))];
 %cv = [hv (wv + size(hv, 2))];
 
-ci = [hi wi];
-cj = [hj wj];
-cv = [hv wv];
+ci = [hi (wi + size(hi, 2))];
+cj = [hj (wj + size(hj, 2))];
+cv = [hv (wv + size(hv, 2))];
 
 % collect triplets here
-%G = sparse(wi,wj,wv);
-% G = sparse(hi,hj,hv);
+%G = sparse(hi,hj,hv);
 G = sparse(ci,cj,cv);
 
 

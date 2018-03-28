@@ -3,7 +3,7 @@ close all
 
 image=imread('test.png');
 image=imread('blurryImage.png');
-image=image(250:354,1:204,:);
+image=image(300:354,1:204,:);
 figure, imshow(image)
 [h, w, d]=size(image);
 U = double(reshape(image,w*h,d))/255;
