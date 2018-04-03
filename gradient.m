@@ -42,9 +42,13 @@ ci = [hi wi];
 cj = [hj wj];
 cv = [hv wv];
 
+Gh = sparse(hi, hj, hv);
+Gv = sparse(wi, wj, wv);
+
+G = [Gh; Gv];
 % collect triplets here
 %G = sparse(wi,wj,wv);
 % G = sparse(hi,hj,hv);
-G = sparse(ci,cj,cv);
+%G = sparse(ci,cj,cv);
 
 

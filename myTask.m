@@ -3,13 +3,13 @@ close all
 
 image=imread('test.png');
 image=imread('blurryImage.png');
-image=image(250:354,1:204,:);
+%image=image(250:354,1:204,:);
 figure, imshow(image)
 [h, w, d]=size(image);
 U = double(reshape(image,w*h,d))/255;
 
 %% Write your method here
-c_s = 60.0;
+c_s = 4.0;
 c_U = 0.5;
 
 G = gradient(h, w);

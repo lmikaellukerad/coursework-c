@@ -13,17 +13,16 @@ source=imread('source.jpg');
 [h_t, w_t, d_t]=size(target);
 
 % Index inner and boundary pixels
-cutout = target(221:282, 5:78, :);
-%cutout_inside = cutout;
-cutout(2:60, 2:73, :) = 0;
+cutout = target(221:281, 5:78, :);
+cutout(2:60, 2:71, :) = 0;
 [h_c, w_c, d_c]=size(cutout);
 
 % Create vector U for inner and boundary pixels
-U = double(reshape(source,w_s*h_s,d_s))/255;
+U = double(reshape(source,w_s*h_s, d_s))/255;
 
 % Create vector U_b storing the boundary pixels of the target
 U_b = double(reshape(cutout,w_c*h_c,d_c))/255;
-U_b = U_b(any(U_b,2),:);
+% U_b = U_b(any(U_b,2),:);
 
 % Compute a gradient matrix G that contains only the inner gradients and 
 % the boundary gradients
@@ -38,5 +37,14 @@ S = sparse(diag(y));
 % Compute gradients of the source image and create a vector ^g that stores 
 % the source gradients and zero for the boundary gradients
 g = G * U;
-g_hat = S * g;
+g_hat = g;
+
+a = 10;
+f1 = G'*G + a*(S')*S;
+f2 = G'*g_hat + a*(S')*U_b;
+
+U_new = f1\f2;
+
+image =uint8(reshape(U_new,h_s,w_s,d_s)*255);
+figure, imshow(image)
 
