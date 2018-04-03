@@ -45,6 +45,10 @@ f2 = G'*g_hat + a*(S')*U_b;
 
 U_new = f1\f2;
 
+
+
 image =uint8(reshape(U_new,h_s,w_s,d_s)*255);
-figure, imshow(image)
+target(221:281, 5:78, :) = image;
+imwrite(image,'bear.png')
+figure, imshow(target)
 
