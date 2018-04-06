@@ -3,7 +3,7 @@ function [ G ] = gradient( h, w)
 
 % Sharpening function using gradients only between vertical neighbours.
 
-x = [1 -1];
+x = [-1 1];
 y = [1 2];
 z = [1 h + 1];
 
@@ -45,7 +45,7 @@ cv = [hv wv];
 Gh = sparse(hi, hj, hv);
 Gv = sparse(wi, wj, wv);
 
-G = [Gh; Gv];
+G = [Gv; Gh];
 % collect triplets here
 %G = sparse(wi,wj,wv);
 % G = sparse(hi,hj,hv);
