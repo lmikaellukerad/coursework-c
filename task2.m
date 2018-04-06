@@ -12,9 +12,12 @@ source=imread('source.jpg');
 [h_s, w_s, d_s]=size(source);
 [h_t, w_t, d_t]=size(target);
 
+y_start = 221;
+x_start = 105;
+
 % Index inner and boundary pixels
-cutout = target(221:281, 5:78, :);
-cutout(2:60, 2:71, :) = 0;
+cutout = target(y_start:(y_start+h_s - 1), x_start:(x_start + w_s - 1), :);
+cutout(2:(h_s - 1), 2:(w_s - 1), :) = 0;
 [h_c, w_c, d_c]=size(cutout);
 
 % Create vector U for inner and boundary pixels
@@ -39,7 +42,7 @@ S = sparse(diag(y));
 g = G * U;
 g_hat = g;
 
-a = 10;
+a = 1;
 f1 = G'*G + a*(S')*S;
 f2 = G'*g_hat + a*(S')*U_b;
 
@@ -48,7 +51,7 @@ U_new = f1\f2;
 
 
 image =uint8(reshape(U_new,h_s,w_s,d_s)*255);
-target(221:281, 5:78, :) = image;
+target(y_start:(y_start+h_s - 1), x_start:(x_start + w_s - 1), :) = image;
 imwrite(image,'bear.png')
 figure, imshow(target)
 
