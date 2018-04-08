@@ -1,7 +1,10 @@
 function [ G ] = gradient( h, w)
 %GRADIENT Summary of this function goes here
-
-% Sharpening function using gradients only between vertical neighbours.
+% In this gradient function we create column and row index vectors for both
+% horizontal gradients and vertical gradients. These index vectors are
+% created based on a selection pattern that can be found in the slides. The
+% horizontal and vertical gradient matrices are calculated separately and
+% are combinedd at the end.
 
 x = [-1 1];
 y = [1 2];
@@ -34,21 +37,9 @@ wj = wj_1 + wj_2 + wj_3;
 
 wv = repmat(x, [1 x_w]);
 
-%ci = [hi (wi + size(hi, 2))];
-%cj = [hj (wj + size(hj, 2))];
-%cv = [hv (wv + size(hv, 2))];
-
-ci = [hi wi];
-cj = [hj wj];
-cv = [hv wv];
-
 Gh = sparse(hi, hj, hv);
 Gv = sparse(wi, wj, wv);
 
 G = [Gv; Gh];
-% collect triplets here
-%G = sparse(wi,wj,wv);
-% G = sparse(hi,hj,hv);
-%G = sparse(ci,cj,cv);
 
 
