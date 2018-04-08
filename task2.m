@@ -54,4 +54,5 @@ image =uint8(reshape(U_new,h_s,w_s,d_s)*255);
 target(y_start:(y_start+h_s - 1), x_start:(x_start + w_s - 1), :) = image;
 imwrite(image,'bear.png')
 figure, imshow(target)
+imwrite(target, 'bearinresult.png')
 
